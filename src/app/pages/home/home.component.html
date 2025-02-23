@@ -1,0 +1,33 @@
+<!-- Título principal de la página de inicio -->
+<h1>Bienvenido a la Gestión de Empleados</h1>
+
+<!-- Descripción de la aplicación, explicando sus funcionalidades -->
+<p>Esta aplicación permite visualizar, agregar, editar y eliminar empleados.</p>
+
+<!-- Menú de navegación para acceder a diferentes secciones de la aplicación -->
+<nav>
+  <ul>
+    <!-- 
+      Cada enlace utiliza la directiva 'routerLink' de Angular, que permite la navegación entre rutas 
+      sin recargar la página. Aquí, 'routerLink="/empleados"' enlaza con la ruta configurada para visualizar empleados.
+    -->
+    <li><a routerLink="/empleados">Ver Empleados</a></li>
+    
+    <!-- 
+      Este enlace utiliza 'routerLink="/administracion"', que redirige a la sección de administración. 
+      Nota: La ruta '/administracion' podría estar protegida por un guard (AuthGuard) que valida el acceso.
+    -->
+    <li><a routerLink="/administracion">Administración</a></li>
+  </ul>
+</nav>
+
+<!-- 
+routerLink:
+Esta directiva se utiliza para crear enlaces de navegación en aplicaciones Angular. Permite enlazar a rutas definidas en el módulo de enrutamiento sin recargar la página, 
+lo que hace que la navegación sea más fluida.
+
+*(ngSubmit) y ngIf (explicados en fragmentos anteriores):
+Aunque en este fragmento no se usan, es útil recordar:
+    ngSubmit: Se utiliza en formularios para capturar el evento de envío y ejecutar una función del componente.
+    ngIf: Es una directiva estructural que se usa para mostrar o ocultar elementos en función de una condición booleana. 
+-->

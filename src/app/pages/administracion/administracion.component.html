@@ -1,0 +1,105 @@
+<!-- Navbar con botón para regresar al Home -->
+<nav>
+  <!-- 
+    routerLink: Directiva que permite la navegación interna sin recargar la página.
+    En este caso, redirige a la ruta raíz ("/").
+  -->
+  <a routerLink="/" class="btn">Regresar al Home</a>
+</nav>
+
+<h2>Administración de Empleados</h2>
+
+<!-- Botón para mostrar el formulario de ingreso -->
+<!-- (click): Evento que, al hacer clic, ejecuta el método onAddNew() del componente -->
+<button (click)="onAddNew()">Agregar Empleado</button>
+
+<!-- Tabla con la lista de empleados -->
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Correo</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- 
+      *ngFor: Directiva estructural que itera sobre el arreglo 'employees' y genera una fila (<tr>) para cada empleado.
+    -->
+    <tr *ngFor="let employee of employees">
+      <!-- Interpolación para mostrar las propiedades de cada empleado -->
+      <td>{{ employee.id }}</td>
+      <td>{{ employee.nombre }}</td>
+      <td>{{ employee.correo }}</td>
+      <td>
+        <!-- Botón para editar un empleado; al hacer clic, se ejecuta onEdit(employee) -->
+        <button (click)="onEdit(employee)">Editar</button>
+        <!-- Botón para eliminar un empleado; al hacer clic, se ejecuta onDelete(employee) -->
+        <button (click)="onDelete(employee)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Formulario de registro/edición, visible solo cuando showForm es true -->
+<!-- *ngIf: Directiva estructural que muestra u oculta el bloque según la condición (showForm) -->
+<div *ngIf="showForm">
+  <!-- 
+    Formulario reactivo vinculado al FormGroup 'employeeForm'.
+    (ngSubmit): Evento que se dispara al enviar el formulario, ejecutando el método onSubmit().
+  -->
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Nombre:</label>
+      <!-- Input vinculado al control 'nombre' del formulario -->
+      <input type="text" formControlName="nombre">
+      <!-- 
+        *ngIf: Muestra el mensaje de error si el formulario ha sido enviado o el campo fue tocado y es inválido.
+      -->
+      <div *ngIf="(submitted || employeeForm.get('nombre')?.touched) && employeeForm.get('nombre')?.invalid">
+        El nombre es obligatorio.
+      </div>
+    </div>
+    <div>
+      <label>Correo:</label>
+      <!-- Input vinculado al control 'correo' del formulario -->
+      <input type="email" formControlName="correo">
+      <div *ngIf="(submitted || employeeForm.get('correo')?.touched) && employeeForm.get('correo')?.invalid">
+        Ingresa un correo válido.
+      </div>
+    </div>
+    <div>
+      <label>Contraseña:</label>
+      <!-- Input para la contraseña vinculado al control 'contraseña' -->
+      <input type="password" formControlName="contraseña">
+      <div *ngIf="(submitted || employeeForm.get('contraseña')?.touched) && employeeForm.get('contraseña')?.invalid">
+        La contraseña es obligatoria.
+      </div>
+    </div>
+    <div>
+      <label>Confirmar Contraseña:</label>
+      <!-- Input para confirmar la contraseña vinculado al control 'confirmarContraseña' -->
+      <input type="password" formControlName="confirmarContraseña">
+      <!-- 
+        *ngIf: Muestra el mensaje de error si, tras el envío o tocar el campo, el validador personalizado indica que las contraseñas no coinciden.
+      -->
+      <div *ngIf="(submitted || employeeForm.get('confirmarContraseña')?.touched) && employeeForm.errors?.['mismatch']">
+        Las contraseñas no coinciden.
+      </div>
+    </div>
+    <!-- Botón para enviar el formulario. La etiqueta varía según si se está editando (Actualizar) o registrando (Registrar). -->
+    <button type="submit">{{ isEditing ? 'Actualizar' : 'Registrar' }}</button>
+  </form>
+</div>
+
+
+
+<!-- 
+- routerLink: Permite la navegación interna en la aplicación sin recargar la página.
+- (click): Evento que ejecuta el método especificado en el componente cuando se hace clic en el elemento.
+- (ngSubmit): Evento que se dispara cuando se envía el formulario, invocando el método indicado.
+- [formGroup] y formControlName: Vinculan el formulario a un modelo de formulario reactivo definido en el componente.
+- *ngFor: Itera sobre una colección y genera elementos dinámicamente.
+- *ngIf: Muestra u oculta partes del DOM basándose en una condición booleana. 
+-->

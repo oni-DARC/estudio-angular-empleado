@@ -1,0 +1,44 @@
+<h2>Iniciar Sesión</h2>
+
+<!-- 
+  El formulario se vincula al FormGroup "loginForm" definido en el componente.
+  La directiva (ngSubmit) se encarga de capturar el evento de envío del formulario y
+  ejecutar el método onSubmit() del componente cuando el usuario lo envía.
+-->
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label>Usuario:</label>
+    <!--  La propiedad formControlName asocia este input al control "username" del formulario. -->
+    <input type="text" formControlName="username">
+    <!--  La directiva estructural *ngIf se utiliza para mostrar u ocultar el mensaje de error.
+      Aquí, se muestra el mensaje solo si el control "username" es inválido y ha sido tocado por el usuario. -->
+    <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+      El usuario es obligatorio.
+    </div>
+  </div>
+  <div>
+    <label>Contraseña:</label>
+    <input type="password" formControlName="password">
+    <!--  Se utiliza *ngIf para condicionar la visualización del mensaje de error para el campo "password".
+      El mensaje aparece si el control es inválido y ha sido interactuado. -->
+    <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+      La contraseña es obligatoria.
+    </div>
+  </div>
+  <!--  Se utiliza *ngIf para mostrar el mensaje de error global (errorMessage) si existe. -->
+  <div *ngIf="errorMessage">
+    <p style="color: red;">{{ errorMessage }}</p>
+  </div>
+  <!-- Botón de envío que, al ser presionado, activa (ngSubmit) del formulario. -->
+  <button type="submit">Ingresar</button>
+</form>
+
+<!-- 
+ngSubmit:
+  Esta directiva se aplica al elemento <form> y permite que, al enviar el formulario, se ejecute el método especificado (en este caso, onSubmit()). 
+  Es la forma en la que Angular maneja el evento de envío del formulario para procesar y validar la información ingresada.
+
+ngIf:
+  Es una directiva estructural que se utiliza para incluir o excluir partes del DOM basándose en una condición booleana. En este ejemplo, se usa para mostrar 
+  mensajes de error solo cuando ciertos campos del formulario son inválidos o cuando existe un mensaje de error global (errorMessage). 
+-->

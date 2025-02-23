@@ -1,0 +1,45 @@
+<!-- Título de la sección -->
+<h2>Lista de Empleados</h2>
+
+<!-- Tabla para mostrar la lista de empleados -->
+<table>
+  <thead>
+    <tr>
+      <!-- Encabezados de las columnas -->
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Correo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!--
+      La directiva *ngFor se utiliza para iterar sobre el arreglo 'empleados'.
+      Por cada elemento en 'empleados', se crea una nueva fila (<tr>) en la tabla.
+    -->
+    <tr *ngFor="let empleado of empleados">
+      <!--
+        Se utilizan expresiones de interpolación ({{ }}) para mostrar los valores
+        de las propiedades 'id', 'nombre' y 'correo' de cada empleado.
+      -->
+      <td>{{ empleado.id }}</td>
+      <td>{{ empleado.nombre }}</td>
+      <td>{{ empleado.correo }}</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- 
+Título:
+Se muestra un encabezado que indica que la sección contiene la lista de empleados.
+
+Tabla:
+La tabla contiene un encabezado (<thead>) con los nombres de las columnas: ID, Nombre y Correo.
+El cuerpo de la tabla (<tbody>) utiliza la directiva *ngFor para iterar sobre el arreglo empleados y generar una fila por cada empleado.
+
+*Directiva ngFor:
+Permite recorrer un arreglo (en este caso, empleados) y renderizar dinámicamente una parte del DOM para cada elemento.
+
+Interpolación ({{ }}):
+Se usa para mostrar los valores de las propiedades de cada objeto empleado dentro de la tabla. 
+-->
