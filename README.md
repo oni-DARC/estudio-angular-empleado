@@ -4,13 +4,13 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 
 ## Instalar Angular CLI
-ng version
-npm install -g @angular/cli
-npm install -g json-server
+- ng version
+- npm install -g @angular/cli
+- npm install -g json-server
 
 
 ## Crear un nuevo proyecto
-ng new gestion-empleados-00 --standalone --routing --style css
+- ng new gestion-empleados-00 --standalone --routing --style css
 
 ## Estructura
 src/app/
@@ -41,20 +41,20 @@ src/app/
 
 
 ## Creación de Componentes
-ng g c pages/home --standalone
-ng g c pages/empleados --standalone
-ng g c pages/administracion --standalone
-ng g c pages/error404 --standalone
-ng g c pages/login --standalone
+- ng g c pages/home --standalone
+- ng g c pages/empleados --standalone
+- ng g c pages/administracion --standalone
+- ng g c pages/error404 --standalone
+- ng g c pages/login --standalone
 
 
 ## Creación de guardianes
-ng generate guard guards/auth
-	CanActivate
+- ng generate guard guards/auth
+	- CanActivate
 
 ## Creación de servicio
-ng g s services/empleado
-ng generate service services/auth
+- ng g s services/empleado
+- ng generate service services/auth
 
 
 ## 2. Configuración de Rutas (app.routes.ts)
@@ -126,7 +126,7 @@ Archivo: src/app/pages/error404/error404.component.html
 ### 13. main.ts
 
 
-## 9. Ejecución
+## 9. Ejecucióngit add
 json-server --watch db.json --port 3000
 ng serve
 ng serve -o
